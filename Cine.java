@@ -1,5 +1,8 @@
 package practica1;
 
+import practica1.Sala;
+import practica1.Sesion;
+
 public class Cine {
 	
 	private String nombre;

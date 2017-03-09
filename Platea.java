@@ -6,9 +6,8 @@ public class Platea {
 	private Asiento[][] asientos;
 	private int asientosTotales;
 	
-	public Platea(String nombre, int asientosTotales) {
+	public Platea(String nombre) {
 		this.nombre = nombre;
-		this.asientosTotales = asientosTotales;
 	}
 	
 	public void ocupar(Asiento asiento){
@@ -19,6 +18,8 @@ public class Platea {
 		asiento.liberar();
 	}
 	
-	
+	public void setAsientosTotales(int asientosTotales) {
+        this.asientosTotales = asientosTotales;
+    }
 	
 }
