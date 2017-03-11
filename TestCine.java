@@ -22,38 +22,45 @@ public class TestCine {
 		 //BufferedReader br = new BufferedReader(new InputStreamReader(in));
 		 
 		 Scanner scanner = new Scanner(new File("src/array.txt"));
+		 
 		
-
+		
+		 
+		
+		 
+		
 		 int [] asientos = new int [220];
 		
-		 int i = 0;
+		 int i = 0; 
+		 int fila=1;
+		 int numero=1;
 		 
-		 int fila=0;
-		 int numero=0;
+		
 		 
+		 Platea platea = new Platea("platea", 250);
 		 
+		 Sala sala = new Sala(1, 250);
+		 
+		 Cine cine = new Cine("Cinema", sala);
+		 	 
+		 cine.nuevaSala(sala);
+		 cine.nuevaPlatea(1, platea);
+		
 		 while(scanner.hasNextInt()){
 			 i++;
 			 asientos[i] = scanner.nextInt();
 			
 			 fila  = asientos[i] / 100;
 			 numero  = asientos[i] % 100;
-			 Cine cine;
-			 
-			// Asiento asiento;
-			 
+			 		 
 			 if (numero != 0){ 
-				
-				 cine = new Cine("Cinema", 2);
-				 
-				 //Esto no es así
-				 cine.nuevaSala(new Sala(1,new Platea("platea1", 230))); 
-				 				 
-				 System.out.println(cine.toString());
-				
-				
+					 
+				 //Esto no será así		
+				 Asiento asiento = new Asiento(fila, numero);
+				 cine.nuevoAsiento(1, "platea", asiento);
+			
 			 }
-			 
 		 } 
+		 System.out.println(cine.toString());
 	 }	 	         
 }

@@ -15,9 +15,9 @@ public class Cine {
 	 * Construye un Cine
 	 * 
 	 */            
-	public Cine(String nombre, int maxSalas) {
+	public Cine(String nombre, Sala sala) {
 		this.nombre = nombre;
-		salas = new Sala[maxSalas];
+		salas = new Sala[20];
 		
 	}
 	
@@ -28,7 +28,33 @@ public class Cine {
 		}
 		return false;
 	}
+	
+	boolean nuevaPlatea(int numeroSala, Platea platea){
+		Sala sala = buscarSala(numeroSala);
+		if (sala != null){
+			sala.nuevaPlatea(platea);
+			return true;
+		}
+		return false;
+	}
 		
+	boolean nuevoAsiento(int numeroSala, String nombrePlatea, Asiento asiento){
+		Sala sala = buscarSala(numeroSala);
+		if (sala != null){
+			sala.nuevoAsiento(nombrePlatea, asiento);
+			return true;
+		}
+		return false;
+	}
+	
+	Sala buscarSala(int numeroSala){	
+		for (int i = 0; i < numSalas; i++) {
+			if (salas[i].getNumero()==numeroSala)
+				return salas[i];
+		}
+		return null;
+	}
+	
 	public String toString() {
 	    String s = nombre + "\n";
 	    
@@ -37,6 +63,7 @@ public class Cine {
 	      }
 	    return s;
 	  }
+	
 	
 }
 

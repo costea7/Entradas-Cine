@@ -4,13 +4,14 @@ public class Platea {
 	
 	private String nombre;
 	private Asiento[] asientos;
-	private int asientosTotales=0;
+	private int asientosTotales;
 	public int MAX_ASIENTOS = 500;
+	private int fila;
+	private int numero;
 	
 	public Platea(String nombre, int asientosTotales) {
 		this.nombre = nombre;
-		this.asientosTotales = asientosTotales;
-		asientos = new Asiento[MAX_ASIENTOS];
+		asientos = new Asiento[asientosTotales];
 	}
 	
 	public String getNombre() {
@@ -40,8 +41,9 @@ public class Platea {
 	public String toString() {
 	    String s = nombre + " " +  "\n";
 	    s = s + "Asientos : ";
+	  
 	    for (int i = 0; i < asientosTotales; i++) {
-	      s = s + asientos[i].toString() + " ";
+	    	s = s + asientos[i].toString() + " ";
 	    }
 	    return s;
 	  }
