@@ -3,11 +3,30 @@ package practica1;
 public class Platea {
 	
 	private String nombre;
-	private Asiento[][] asientos;
-	private int asientosTotales;
+	private Asiento[] asientos;
+	private int asientosTotales=0;
+	public int MAX_ASIENTOS = 500;
 	
-	public Platea(String nombre) {
+	public Platea(String nombre, int asientosTotales) {
 		this.nombre = nombre;
+		this.asientosTotales = asientosTotales;
+		asientos = new Asiento[MAX_ASIENTOS];
+	}
+	
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	boolean nuevo(Asiento asiento) {
+		if (asientosTotales < asientos.length) {
+			asientos[asientosTotales++] = asiento;
+			return true;
+		}
+		return false;
 	}
 	
 	public void ocupar(Asiento asiento){
@@ -18,8 +37,13 @@ public class Platea {
 		asiento.liberar();
 	}
 	
-	public void setAsientosTotales(int asientosTotales) {
-        this.asientosTotales = asientosTotales;
-    }
+	public String toString() {
+	    String s = nombre + " " +  "\n";
+	    s = s + "Asientos : ";
+	    for (int i = 0; i < asientosTotales; i++) {
+	      s = s + asientos[i].toString() + " ";
+	    }
+	    return s;
+	  }
 	
 }

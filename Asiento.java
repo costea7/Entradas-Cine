@@ -32,6 +32,8 @@ public class Asiento {
 	public int getNumero() {
 		return numero;
 	}
-
 	
+	public String toString() {
+	    return String.valueOf(fila + numero);
+	}
 }
