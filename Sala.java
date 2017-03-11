@@ -1,25 +1,23 @@
 package practica1;
 
-
 public class Sala {
 	
-	private Sesion[] sesiones;
 	private int numero;
+	private Sesion[] sesiones;
 	private Platea[] plateas;
 	
 	
-	public int MAX_SESIONES = 10;
+	public int MAX_SESIONES = 50;
 	public int MAX_PLATEAS = 10;
-	private int numSesiones = 0;
-	
+	private int numSesiones;
 	private int numPlateas;
 	
 	
-	public Sala(int numero, int max_plateas) {
+	public Sala(int numero) {
 		
 		this.numero = numero;
-		plateas = new Platea[max_plateas];
-		//sesiones = new Sesion[MAX_SESIONES];
+		plateas = new Platea[MAX_PLATEAS];
+		sesiones = new Sesion[MAX_SESIONES];
 	}
 
 	boolean anadirSesion(Sesion sesion){
@@ -62,16 +60,34 @@ public class Sala {
 		return null;
 	}
 	
+	Sesion buscarSesion(int idSesion){	
+		for (int i = 0; i < numSesiones; i++) {	
+			if (sesiones[i].getId() == idSesion)
+				return sesiones[i];	
+		}
+		return null;
+	}
+	
 	public int getNumero() {
 		return numero;
 	}
 	
-	public String toString() {
-		String s = numero + " " +  "\n";
-		s = s + "Nombre platea : ";
-		for (int i = 0; i < numPlateas; i++) {
-			s = s + plateas[i].toString() + " ";
+	boolean comprarEntrada(int idSesion, String nombrePlatea, int fila, int numero){
+		Sesion sesion = buscarSesion(idSesion);
+		Platea platea = buscarPlatea(nombrePlatea);
+		if((sesion != null) && (platea != null)){
+			if(platea.comprarEntrada(fila, numero)){
+				return true;
+			}
 		}
+		return false;
+	}
+	
+	public String toString(int idSesion, String nombrePlatea, int fila, int numero) {
+		String s = "Sala "+numero+  "\n";
+		Sesion sesion = buscarSesion(idSesion);
+		Platea platea = buscarPlatea(nombrePlatea);
+		s = s + sesion.toString() + platea.toString(fila, numero);
 		return s;
 	}	
 }

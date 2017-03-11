@@ -1,5 +1,6 @@
 package practica1;
 
+
 public class Cine {
 	
 	private String nombre;
@@ -37,6 +38,18 @@ public class Cine {
 		}
 		return false;
 	}
+	
+	boolean nuevaSesion(int numeroSala, Sesion sesion, String nombrePlatea ){
+		Sala sala = buscarSala(numeroSala);
+		if (sala != null){
+			Platea platea = sala.buscarPlatea(nombrePlatea); 
+			if(platea != null){
+				sala.anadirSesion(sesion);
+				return true;
+			}
+		}
+		return false;
+	}
 		
 	boolean nuevoAsiento(int numeroSala, String nombrePlatea, Asiento asiento){
 		Sala sala = buscarSala(numeroSala);
@@ -55,15 +68,23 @@ public class Cine {
 		return null;
 	}
 	
-	public String toString() {
+	public String toString(int numeroSala, int idSesion, String nombrePlatea, int fila, int numero) {
 	    String s = nombre + "\n";
-	    
-	    for (int i = 0; i < numSalas; i++) {
-	        s = s + salas[i].toString() + "\n";
-	      }
+	    Sala sala = buscarSala(numeroSala);
+	    s = s + sala.toString(idSesion, nombrePlatea, fila, numero)+"\n";
 	    return s;
 	  }
 	
+	String comprarEntrada(int numeroSala, int idSesion, String nombrePlatea, int fila, int numero){
+		Sala sala = buscarSala(numeroSala);
+			if(sala != null){
+				if(sala.comprarEntrada(idSesion, nombrePlatea, fila, numero)){
+					return toString(numeroSala, idSesion, nombrePlatea, fila, numero);
+					
+				}
+			}
+		return "ERROR";
+	}
 	
 }
 

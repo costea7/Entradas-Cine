@@ -33,7 +33,11 @@ public class Asiento {
 		return numero;
 	}
 	
+	public boolean getEstado() {
+		return ocupado;
+	}
+	
 	public String toString() {
-	    return String.valueOf(fila + numero);
+	    return String.valueOf("Asiento Fila: "+fila+" Numero: "+numero+"\n");
 	}
 }
