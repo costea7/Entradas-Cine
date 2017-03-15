@@ -18,22 +18,27 @@ public class Sesion {
 		this.mapaOcupacion = mapaOcupacion;
 	}
 
-	public void cambiarPelicula(){
-		
-	}
-	
 	public Platea verMapaOcupacion(){
 		return mapaOcupacion;
 	}
 	
-	public void ocupar(Asiento asiento){
-		mapaOcupacion.ocupar(asiento);
+	
+	boolean comprarEntrada(String nombre, int  fila, int numero){
+		Platea mapaOcupacion = buscarPlatea(nombre);
+		if(mapaOcupacion != null) {				
+			if(mapaOcupacion.ocupar(fila, numero)){
+				return true;	
+			}
+		}	
+		return false;
 	}
 	
-	public void liberar(Asiento asiento){
-		mapaOcupacion.liberar(asiento);
+	Platea buscarPlatea(String nombre){		
+			if (mapaOcupacion.getNombre().equals(nombre)){
+				return mapaOcupacion;	
+			}
+		return null;
 	}
-
 	
 	//Metodos get/set
 	
@@ -42,6 +47,10 @@ public class Sesion {
 	}	
 	public String getPelicula() {
 		return pelicula;
+	}
+	
+	public void cambiarPelicula(String pelicula){
+		this.pelicula = pelicula;
 	}
 	
 	public String toString() {

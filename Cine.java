@@ -79,12 +79,10 @@ public class Cine {
 		Sala sala = buscarSala(numeroSala);
 			if(sala != null){
 				if(sala.comprarEntrada(idSesion, nombrePlatea, fila, numero)){
-					return toString(numeroSala, idSesion, nombrePlatea, fila, numero);
-					
+					return toString(numeroSala, idSesion, nombrePlatea, fila, numero);			
 				}
 			}
 		return "ERROR";
 	}
 	
 }
-

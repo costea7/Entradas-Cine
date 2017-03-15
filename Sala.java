@@ -13,7 +13,7 @@ public class Sala {
 	private int numPlateas;
 	
 	
-	public Sala(int numero) {
+	public Sala(int numero, Platea platea) {
 		
 		this.numero = numero;
 		plateas = new Platea[MAX_PLATEAS];
@@ -76,7 +76,7 @@ public class Sala {
 		Sesion sesion = buscarSesion(idSesion);
 		Platea platea = buscarPlatea(nombrePlatea);
 		if((sesion != null) && (platea != null)){
-			if(platea.comprarEntrada(fila, numero)){
+			if(sesion.comprarEntrada(nombrePlatea, fila, numero)){
 				return true;
 			}
 		}

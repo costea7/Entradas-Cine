@@ -4,9 +4,10 @@ package practica1;
 public class Platea {
 	
 	private String nombre;
-	private Asiento[] asientos;
 	private int asientosTotales;
-	public int MAX_ASIENTOS = 500;
+	private Asiento[] asientos;
+	
+	//public int MAX_ASIENTOS = 500;
 	
 	public Platea(String nombre, int asientosTotales) {
 		this.nombre = nombre;
@@ -29,6 +30,21 @@ public class Platea {
 		return false;
 	}
 	
+	public boolean ocupar(int fila, int numero){
+		Asiento asiento = buscarAsiento(fila,numero);
+		if (asiento!=null){
+			if((asiento.getEstado()== false)){
+				asiento.ocupar();
+				return true;	
+			}
+		}
+		return false;
+	}
+	
+	public void liberar(Asiento asiento){
+		asiento.liberar();
+	}
+	
 	Asiento buscarAsiento(int fila, int numero){	
 		for (int i = 0; i < asientosTotales; i++) {	
 			if (asientos[i].getFila() == fila && asientos[i].getNumero() == numero)
@@ -37,28 +53,10 @@ public class Platea {
 		return null;
 	}
 	
-	public void ocupar(Asiento asiento){
-		asiento.ocupar();
-	}
-	
-	public void liberar(Asiento asiento){
-		asiento.liberar();
-	}
-	
-	boolean comprarEntrada(int fila, int numero){
-		Asiento asiento = buscarAsiento(fila, numero);
-		if (asiento != null){
-			if(!asiento.getEstado())
-				asiento.ocupar();
-				return true;
-		}
-		return false;
-	}
-	
 	public String toString(int fila, int numero) {
 		Asiento asiento = buscarAsiento(fila, numero);
-	    String s = asiento.toString();
-	    return s;
-	  }
+		String s = asiento.toString();
+		return s;
+	}
 	
 }

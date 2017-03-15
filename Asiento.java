@@ -38,6 +38,7 @@ public class Asiento {
 	}
 	
 	public String toString() {
-	    return String.valueOf("Asiento Fila: "+fila+" Numero: "+numero+"\n");
+	    String s =("Asiento Fila: "+fila+" Numero: "+numero+"\n");
+	    return s;
 	}
 }
