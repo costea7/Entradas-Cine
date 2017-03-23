@@ -5,11 +5,12 @@ public class Cine {
 	
 	private String nombre;
 	private Sala[] salas;
-	//private Sesion[] sesiones;
+	private Sesion[] sesiones;
 	//private Platea[] plateas;
 	
 	
 	private int numSalas;
+	private int numSesiones;
 	
 	
 	/**
@@ -30,43 +31,50 @@ public class Cine {
 		return false;
 	}
 	
-	boolean nuevaPlatea(int numeroSala, Platea platea){
+	boolean nuevaPlatea(int numeroSala, int idSesion, Platea platea){
 		Sala sala = buscarSala(numeroSala);
 		if (sala != null){
-			sala.nuevaPlatea(platea);
-			return true;
+				sala.nuevaPlatea(idSesion, platea);
+				return true;		
 		}
 		return false;
 	}
 	
-	boolean nuevaSesion(int numeroSala, Sesion sesion, String nombrePlatea ){
+	boolean nuevaSesion(int numeroSala, Sesion sesion ){
 		Sala sala = buscarSala(numeroSala);
 		if (sala != null){
-			Platea platea = sala.buscarPlatea(nombrePlatea); 
-			if(platea != null){
 				sala.anadirSesion(sesion);
-				return true;
-			}
+				return true;		
 		}
 		return false;
 	}
 		
-	boolean nuevoAsiento(int numeroSala, String nombrePlatea, Asiento asiento){
+	boolean nuevoAsiento(int numeroSala, int idSesion, String nombrePlatea, Asiento asiento){
 		Sala sala = buscarSala(numeroSala);
 		if (sala != null){
-			sala.nuevoAsiento(nombrePlatea, asiento);
+			sala.nuevoAsiento(idSesion, nombrePlatea, asiento);
 			return true;
 		}
 		return false;
 	}
 	
-	Sala buscarSala(int numeroSala){	
+	Sesion buscarSesion(int id){	
+		for (int i = 0; i < numSesiones; i++) {
+			if (sesiones[i].getId()==id)
+				return sesiones[i];
+		}
+		return null;
+	}
+	
+	Sala buscarSala(int numero) {
 		for (int i = 0; i < numSalas; i++) {
-			if (salas[i].getNumero()==numeroSala)
+			if (salas[i].getNumero()==numero)
 				return salas[i];
 		}
 		return null;
 	}
+	
+	
 	
 	public String toString(int numeroSala, int idSesion, String nombrePlatea, int fila, int numero) {
 	    String s = nombre + "\n";

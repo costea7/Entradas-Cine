@@ -31,43 +31,45 @@ public class TestCine {
 		 int fila=1;
 		 int numero=1;
 		 
-		
+		 Sala sala = new Sala(1);
+		 
+		 
+		 Sesion sesion = new Sesion(1, "Master and Commander", "17:00", "19:30", "25/02/2017");
+		 Sesion sesion1 = new Sesion(2,"Otra peli","20:00", "21:30", "25/02/2017");
 		 
 		 Platea platea = new Platea("platea", 250);
-		 Sesion sesion = new Sesion(1, "Master and Commander", "17:00", "19:30", "25/02/2017", platea);
+		 Platea platea1 = new Platea("platea1", 250);
 		 
-		 Sesion sesion1 = new Sesion(2,"Otra peli","20:00", "21:30", "25/02/2017", platea);
 		 
-		 Sala sala = new Sala(1, platea);
 		 Cine cine = new Cine("Cine Rialto", sala);
 		 
+		 
 		 cine.nuevaSala(sala);
-		 cine.nuevaPlatea(1, platea);
 		 
-		 cine.nuevaSesion(1, sesion, "platea");
+		 cine.nuevaSesion(1, sesion);
+		 cine.nuevaSesion(1, sesion1); 
 		 
-		 cine.nuevaSesion(1, sesion1, "platea");
+		 cine.nuevaPlatea(1,1, platea); 
+		 cine.nuevaPlatea(1,2, platea1);
 		 
-		 
-		
+	
 		 while(scanner.hasNextInt()){
 			 i++;
 			 asientos[i] = scanner.nextInt();
 			
 			 fila  = asientos[i] / 100;
 			 numero  = asientos[i] % 100;
+			 
 			 		 
 			 if (numero != 0){ 
-				 
-				 //Esto no será así		
+					 
 				 Asiento asiento = new Asiento(fila, numero);
-				 cine.nuevoAsiento(1, "platea", asiento);	
+				 Asiento asiento2 = new Asiento(fila,numero);
 				 
-				// cine.comprarEntrada(1,1,"platea",1,1);
-				// cine.comprarEntrada(1,2,"platea",1,2);
-			 }
-			 
-			 
+				 cine.nuevoAsiento(1,1,"platea", asiento);	
+				 cine.nuevoAsiento(1,2,"platea1",asiento2);
+				 
+			 }	 
 		 } 
 		 
 		 FileWriter fichero1 = new FileWriter("src/practica1/entrada1.txt");
@@ -75,7 +77,7 @@ public class TestCine {
 		 pw1.println(cine.comprarEntrada(1, 1, "platea", 1, 5));
 
 		 PrintWriter pw2 = new PrintWriter(fichero1);
-		 pw2.println(cine.comprarEntrada(1, 2, "platea", 1, 5));
+		 pw2.println(cine.comprarEntrada(1, 2, "platea1", 1, 5));
 		 
 		 fichero1.close();
 

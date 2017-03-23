@@ -5,38 +5,56 @@ public class Sesion {
 	private int id;
 	private String pelicula;
 	private String horaInicio, horaFin, fecha;
-	private Platea mapaOcupacion;
+	private Platea[] plateas;
 	private int asientosLibres;	
+	private int numPlateas;
 	
-	public Sesion(int id, String pelicula, String horaInicio, String horaFin,String fecha, Platea mapaOcupacion) {
+	public Sesion(int id, String pelicula, String horaInicio, String horaFin,String fecha) {
 
 		this.id = id;
 		this.pelicula = pelicula;
 		this.horaInicio = horaInicio;
 		this.horaFin = horaFin;
 		this.fecha = fecha;
-		this.mapaOcupacion = mapaOcupacion;
+		plateas = new Platea[100];
 	}
 
-	public Platea verMapaOcupacion(){
-		return mapaOcupacion;
+	public void verMapaOcupacion(){
+		
 	}
 	
-	
-	boolean comprarEntrada(String nombre, int  fila, int numero){
-		Platea mapaOcupacion = buscarPlatea(nombre);
-		if(mapaOcupacion != null) {				
-			if(mapaOcupacion.ocupar(fila, numero)){
+	boolean comprarEntrada(String nombrePlatea, int fila, int numero){
+		Platea platea = buscarPlatea(nombrePlatea);
+		if(platea != null) {	
+			if(platea.ocupar(fila, numero)){
 				return true;	
 			}
 		}	
 		return false;
 	}
 	
-	Platea buscarPlatea(String nombre){		
-			if (mapaOcupacion.getNombre().equals(nombre)){
-				return mapaOcupacion;	
-			}
+	boolean nuevoAsiento(String nombrePlatea, Asiento asiento) {
+		Platea platea = buscarPlatea(nombrePlatea);
+		if(platea != null){		
+			platea.nuevo(asiento);
+			return true;
+		}
+		return false;
+	}
+	
+	boolean nuevaPlatea(Platea platea) {	
+		if (numPlateas < plateas.length) {
+			plateas[numPlateas++] = platea;
+			return true;
+		}
+		return false;
+	}
+	
+	Platea buscarPlatea(String nombre){	
+		for (int i = 0; i < numPlateas; i++) {	
+			if (plateas[i].getNombre().equals(nombre))
+				return plateas[i];	
+		}
 		return null;
 	}
 	
@@ -53,8 +71,10 @@ public class Sesion {
 		this.pelicula = pelicula;
 	}
 	
-	public String toString() {
+	public String toString(String nombrePlatea,  int fila, int numero) {
 		String s = pelicula + "\n" + "Sesion "+ horaInicio + " - " + horaFin + " - " + fecha+"\n";
+		Platea platea = buscarPlatea(nombrePlatea);
+		s = s + platea.toString(fila, numero);
 		return s;
 	}
 }
