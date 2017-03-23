@@ -12,6 +12,7 @@ public class Asiento {
 	}
 	
 	public void ocupar(){
+		 
 		ocupado = true;
 	}
 	

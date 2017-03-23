@@ -9,14 +9,13 @@ public class Sala {
 	private int numSesiones;
 	
 	
-	
 	public Sala(int numero) {
 		
 		this.numero = numero;
 		sesiones = new Sesion[MAX_SESIONES];
 	}
 
-	boolean anadirSesion(Sesion sesion){
+	boolean nuevaSesion(Sesion sesion){
 		if (numSesiones < sesiones.length) {
 			sesiones[numSesiones++] = sesion;
 			return true;
@@ -28,26 +27,6 @@ public class Sala {
 		sesiones[numSesiones--] = sesion;
 		return true;
 	}
-	/*
-	boolean nuevaPlatea(Platea platea) {	
-		if (numPlateas < plateas.length) {
-			plateas[numPlateas++] = platea;
-			return true;
-		}
-		return false;
-	}	*/
-	
-	//se le pasa un nombre de la platea y un asiento
-	boolean nuevoAsiento(int id, String nombrePlatea, Asiento asiento){
-		Sesion sesion = buscarSesion(id);
-		if(sesion != null){		
-			sesion.nuevoAsiento(nombrePlatea,asiento);
-			return true;
-		}
-		return false;
-	}
-	
-
 	
 	Sesion buscarSesion(int idSesion){	
 		for (int i = 0; i < numSesiones; i++) {	
@@ -56,6 +35,8 @@ public class Sala {
 		}
 		return null;
 	}
+	
+	
 	public boolean nuevaPlatea(int idSesion, Platea platea) {
 		Sesion sesion = buscarSesion(idSesion);
 		if (sesion != null){
@@ -65,9 +46,24 @@ public class Sala {
 		return false;
 	}
 	
-	public int getNumero() {
-		return numero;
+	public boolean eliminarPlatea(int idSesion, Platea platea) {
+		Sesion sesion = buscarSesion(idSesion);
+		if (sesion != null){
+			sesion.eliminarPlatea(platea);
+			return true;		
+		}
+		return false;
 	}
+	
+	boolean buscarPlatea(int idSesion, String nombrePlatea){
+		Sesion sesion = buscarSesion(idSesion);
+		if (sesion != null){
+				sesion.buscarPlatea(nombrePlatea);
+				return true;		
+		}
+		return false;
+	}
+	
 	
 	boolean comprarEntrada(int idSesion, String nombrePlatea, int fila, int numero){
 		Sesion sesion = buscarSesion(idSesion);
@@ -80,10 +76,14 @@ public class Sala {
 	}
 	
 	public String toString(int idSesion, String nombrePlatea, int fila, int numero) {
-		String s = "Sala "+numero+  "\n";
+		String s = "Sala "+idSesion+  "\n";
 		Sesion sesion = buscarSesion(idSesion);
 		s = s + sesion.toString(nombrePlatea,fila,numero);
 		return s;
+	}
+	
+	public int getNumero() {
+		return numero;
 	}
 
 		
