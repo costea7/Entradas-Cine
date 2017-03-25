@@ -1,4 +1,5 @@
 package practica1;
+import java.util.Scanner;
 
 public class Sesion {
 
@@ -10,13 +11,13 @@ public class Sesion {
 	private int numPlateas;
 	public int MAX_PLATEAS = 500;
 	
-	public Sesion(int id, String pelicula, String horaInicio, String horaFin,String fecha) {
+	public Sesion(int id, Scanner scanner) {
 
 		this.id = id;
-		this.pelicula = pelicula;
-		this.horaInicio = horaInicio;
-		this.horaFin = horaFin;
-		this.fecha = fecha;
+		this.pelicula = scanner.nextLine();
+		this.horaInicio = scanner.nextLine();
+		this.horaFin = scanner.nextLine();;
+		this.fecha = scanner.nextLine();;
 		plateas = new Platea[MAX_PLATEAS ];
 	}
 

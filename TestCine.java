@@ -17,18 +17,23 @@ public class TestCine {
 		
 	 public static void main(String[] args) throws FileNotFoundException, IOException {
 		 
-		 Scanner scanner = new Scanner(new File("src/array.txt"));
+		 Scanner scanner = new Scanner(new File("src/practica1/array.txt"));
+		 Scanner scanner2 = new Scanner(new File("src/practica1/array.txt"));
+		 Scanner scanner3 = new Scanner(new File("src/practica1/sesion1.txt"));
+		 Scanner scanner4 = new Scanner(new File("src/practica1/sesion2.txt"));
+		 
 
 		 Cine cine = new Cine("Cine Rialto");
 		 
 		 Sala sala = new Sala(1);		 
 		 
-		 Sesion sesion1 = new Sesion(1, "Master and Commander", "17:00", "19:30", "25/02/2017");
-		 Sesion sesion2 = new Sesion(2,"Otra peli","20:00", "21:30", "25/02/2017");
+		 Sesion sesion1 = new Sesion(1, scanner3);
+		 Sesion sesion2 = new Sesion(2, scanner4);
 		 
-		 Platea platea1 = new Platea("platea1", 220, scanner);
-		 Platea platea2 = new Platea("platea2", 220, scanner);
-		 Platea platea3 = new Platea("platea3", 220, scanner);
+		 
+		 Platea platea1 = new Platea("platea1", scanner);
+		 Platea platea2 = new Platea("platea2", scanner2);
+		 
 		 
 		 cine.nuevaSala(sala);
 		 
@@ -36,7 +41,7 @@ public class TestCine {
 		 cine.nuevaSesion(1, sesion2); 
 		 
 		 cine.nuevaPlatea(1,1, platea1); 
-		 cine.nuevaPlatea(1,2, platea3);
+		 cine.nuevaPlatea(1,2, platea2);
 		 
 	
 		  
@@ -47,14 +52,14 @@ public class TestCine {
 		 pw1.println(cine.comprarEntrada(1, 1, "platea1", 1, 5));
 		 
 		 PrintWriter pw2 = new PrintWriter(fichero1);
-		 pw2.println(cine.comprarEntrada(1, 2, "platea1", 1, 6));
-/*
+		 pw2.println(cine.comprarEntrada(1, 1, "platea1", 1, 5));
+
 		 PrintWriter pw3 = new PrintWriter(fichero1);
 		 pw3.println(cine.comprarEntrada(1, 1, "platea1", 1, 6));
 		 
 		 PrintWriter pw4 = new PrintWriter(fichero1);
 		 pw4.println(cine.comprarEntrada(1, 2, "platea2", 1, 6));
-	*/	 
+	 
 		 fichero1.close();
 
 		          

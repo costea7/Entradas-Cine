@@ -9,19 +9,21 @@ public class Platea {
 	private String nombre;
 	private int asientosTotales;
 	private Asiento[] asientos;
+	public int MAX_ASIENTOS = 500;
 	
 	
-	public Platea(String nombre, int asientosTotales, Scanner scanner) {
+	public Platea(String nombre, Scanner scanner) {
 		this.nombre = nombre;
-		asientos = new Asiento[asientosTotales];
-		crearAsientos(scanner, asientosTotales);
+		asientos = new Asiento[MAX_ASIENTOS];
+		crearAsientos(scanner);
 		
 	}
 	
-	public void crearAsientos(Scanner scanner, int asientosTotales){
+	public void crearAsientos(Scanner scanner){
+		
+		int [] asientos = new int [MAX_ASIENTOS];
+		
 		while(scanner.hasNextInt()){
-			
-			int [] asientos = new int [asientosTotales];
 			
 			 int i = 0; 
 			 int fila=1;
@@ -37,8 +39,7 @@ public class Platea {
 		 	if (numero != 0){ 
 			 	Asiento asiento = new Asiento(fila, numero);
 			 	nuevo(asiento);	
-			 		
-			 	
+			 	System.out.println(nombre+" "+fila+" "+numero);
 		 	}	 
 		}
 	}
@@ -80,7 +81,7 @@ public class Platea {
 	Asiento buscarAsiento(int fila, int numero){
 		
 		for (int i = 0; i < asientosTotales; i++) {	
-			System.out.println(numero);
+
 			if (asientos[i].getFila() == fila && asientos[i].getNumero() == numero)
 				return asientos[i];	
 		}

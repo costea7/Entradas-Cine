@@ -108,7 +108,7 @@ public class Cine {
 					return toString(numeroSala, idSesion, nombrePlatea, fila, numero);			
 				}
 			}
-		return "ERROR";
+		return "ERROR \n\n";
 	}
 	
 }
