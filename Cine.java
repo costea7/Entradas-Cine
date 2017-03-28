@@ -1,12 +1,14 @@
 package practica1;
 
+import java.util.Scanner;
 
 public class Cine {
 	
 	private String nombre;
 	private Sala[] salas;
-	public int MAX_SALAS = 500;
 	private int numSalas;
+	
+	public int MAX_SALAS = 500;
 	           
 	public Cine(String nombre) {
 		this.nombre = nombre;
@@ -94,10 +96,20 @@ public class Cine {
 		return false;
 	}
 	
-	public String toString(int numeroSala, int idSesion, String nombrePlatea, int fila, int numero) {
+	String verMapaOcupacion(int numeroSala, int idSesion, String nombrePlatea, Scanner mapa){
+		Sala sala = buscarSala(numeroSala);
+			if(sala != null){
+				if(sala.verMapaOcupacion(idSesion, nombrePlatea)){
+					return imprimirMapa(numeroSala, idSesion, nombrePlatea, mapa);			
+				}
+			}
+		return "ERROR \n\n";
+	}
+	
+	public String imprimirMapa(int numeroSala, int idSesion, String nombrePlatea, Scanner mapa) {
 	    String s = nombre + "\n";
 	    Sala sala = buscarSala(numeroSala);
-	    s = s + sala.toString(idSesion, nombrePlatea, fila, numero)+"\n";
+	    s = s + sala.imprimirMapa(idSesion, nombrePlatea, mapa)+"\n";
 	    return s;
 	  }
 	
@@ -105,10 +117,16 @@ public class Cine {
 		Sala sala = buscarSala(numeroSala);
 			if(sala != null){
 				if(sala.comprarEntrada(idSesion, nombrePlatea, fila, numero)){
-					return toString(numeroSala, idSesion, nombrePlatea, fila, numero);			
+					return imprimirEntrada(numeroSala, idSesion, nombrePlatea, fila, numero);			
 				}
 			}
 		return "ERROR \n\n";
 	}
 	
+	public String imprimirEntrada(int numeroSala, int idSesion, String nombrePlatea, int fila, int numero) {
+	    String s = nombre + "\n";
+	    Sala sala = buscarSala(numeroSala);
+	    s = s + sala.imprimirEntrada(idSesion, nombrePlatea, fila, numero)+"\n";
+	    return s;
+	  }
 }

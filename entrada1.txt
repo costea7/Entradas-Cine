@@ -4,21 +4,59 @@ Master and Commander
 Sesion 17:00 - 19:30 - 25/02/2017
 Asiento Fila: 1 Numero: 5
 
-
-ERROR 
-
-
 Cine Rialto
 Sala 1
 Master and Commander
 Sesion 17:00 - 19:30 - 25/02/2017
 Asiento Fila: 1 Numero: 6
 
+Cine Rialto
+Sala 1
+Master and Commander
+Sesion 17:00 - 19:30 - 25/02/2017
+Asiento Fila: 5 Numero: 1
+
+Cine Rialto
+Sala 1
+Master and Commander
+Sesion 17:00 - 19:30 - 25/02/2017
+Asiento Fila: 7 Numero: 3
+
+Cine Rialto
+Sala 1
+Master and Commander
+Sesion 17:00 - 19:30 - 25/02/2017
+Asiento Fila: 3 Numero: 8
+
+Cine Rialto
+Sala 1
+Master and Commander
+Sesion 17:00 - 19:30 - 25/02/2017
+Asiento Fila: 8 Numero: 7
+
+Cine Rialto
+Sala 1
+Master and Commander
+Sesion 17:00 - 19:30 - 25/02/2017
+Asiento Fila: 9 Numero: 14
+
+Cine Rialto
+Sala 1
+Master and Commander
+Sesion 17:00 - 19:30 - 25/02/2017
+Asiento Fila: 9 Numero: 15
+
+Cine Rialto
+Sala 1
+Master and Commander
+Sesion 17:00 - 19:30 - 25/02/2017
+Asiento Fila: 1 Numero: 12
+
 
 Cine Rialto
 Sala 2
-El señor de los anillos
+El seor de los anillos
 Sesion 21:00 - 23:30 - 25/02/2017
-Asiento Fila: 1 Numero: 6
+Asiento Fila: 1 Numero: 11
 
 

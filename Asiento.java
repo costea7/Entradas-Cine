@@ -23,8 +23,6 @@ public class Asiento {
 	public boolean estado(){
 		return ocupado;
 	}
-
-	// Metodos set/get
 	
 	public int getFila() {
 		return fila;
@@ -38,7 +36,7 @@ public class Asiento {
 		return ocupado;
 	}
 	
-	public String toString() {
+	public String imprimirEntrada() {
 	    String s =("Asiento Fila: "+fila+" Numero: "+numero+"\n");
 	    return s;
 	}

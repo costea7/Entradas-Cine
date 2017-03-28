@@ -1,13 +1,14 @@
 package practica1;
 
+import java.util.Scanner;
+
 public class Sala {
 	
 	private int numero;
 	private Sesion[] sesiones;
-	
-	public int MAX_SESIONES = 500;
 	private int numSesiones;
 	
+	public int MAX_SESIONES = 500;
 	
 	public Sala(int numero) {
 		
@@ -36,7 +37,6 @@ public class Sala {
 		return null;
 	}
 	
-	
 	public boolean nuevaPlatea(int idSesion, Platea platea) {
 		Sesion sesion = buscarSesion(idSesion);
 		if (sesion != null){
@@ -64,7 +64,31 @@ public class Sala {
 		return false;
 	}
 	
+	boolean verMapaOcupacion(int idSesion, String nombrePlatea){
+		Sesion sesion = buscarSesion(idSesion);
+		if((sesion != null)){
+			if(sesion.verMapaOcupacion(nombrePlatea)){
+				return true;
+			}
+		}
+		
+		return false;
+	}
 	
+	public String imprimirMapa(int idSesion, String nombrePlatea, Scanner mapa) {
+		String s = "Sala "+idSesion+  "\n";
+		Sesion sesion = buscarSesion(idSesion);
+		s = s + sesion.imprimirMapa(nombrePlatea, mapa);
+		return s;
+	}
+	
+	public String imprimirEntrada(int idSesion, String nombrePlatea, int fila, int numero) {
+		String s = "Sala "+idSesion+  "\n";
+		Sesion sesion = buscarSesion(idSesion);
+		s = s + sesion.imprimirEntrada(nombrePlatea,fila,numero);
+		return s;
+	}
+
 	boolean comprarEntrada(int idSesion, String nombrePlatea, int fila, int numero){
 		Sesion sesion = buscarSesion(idSesion);
 		if((sesion != null)){
@@ -75,16 +99,7 @@ public class Sala {
 		return false;
 	}
 	
-	public String toString(int idSesion, String nombrePlatea, int fila, int numero) {
-		String s = "Sala "+idSesion+  "\n";
-		Sesion sesion = buscarSesion(idSesion);
-		s = s + sesion.toString(nombrePlatea,fila,numero);
-		return s;
-	}
-	
 	public int getNumero() {
 		return numero;
-	}
-
-		
+	}	
 }

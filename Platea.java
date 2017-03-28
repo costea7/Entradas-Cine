@@ -7,27 +7,27 @@ import javax.swing.SingleSelectionModel;
 public class Platea {
 	
 	private String nombre;
-	private int asientosTotales;
+	private int numAsientos;
+	private int asientosTotales =0;
+	private int asientosLibres =0;
 	private Asiento[] asientos;
-	public int MAX_ASIENTOS = 500;
 	
+	public int MAX_ASIENTOS = 500;
 	
 	public Platea(String nombre, Scanner scanner) {
 		this.nombre = nombre;
 		asientos = new Asiento[MAX_ASIENTOS];
 		crearAsientos(scanner);
-		
 	}
 	
 	public void crearAsientos(Scanner scanner){
 		
 		int [] asientos = new int [MAX_ASIENTOS];
-		
 		while(scanner.hasNextInt()){
 			
-			 int i = 0; 
-			 int fila=1;
-			 int numero=1;
+			int i = 0; 
+			int fila=1;
+			int numero=1;
 			
 		 	i++;
 		 	asientos[i] = scanner.nextInt();
@@ -39,25 +39,63 @@ public class Platea {
 		 	if (numero != 0){ 
 			 	Asiento asiento = new Asiento(fila, numero);
 			 	nuevo(asiento);	
-			 	System.out.println(nombre+" "+fila+" "+numero);
-		 	}	 
+			 	asientosTotales++;
+		 	}
 		}
 	}
 	
 	public boolean nuevo(Asiento asiento){
-		if(asientosTotales<asientos.length){
-			asientos[asientosTotales++] = asiento;
+		if(numAsientos<asientos.length){
+			asientos[numAsientos++] = asiento;
 			return true;
 		}
 		return false;
 	}
 	
-	public String getNombre() {
-		return nombre;
+	public String contarAsientos(){
+		for(int i=0;i<numAsientos;i++){
+			if(asientos[i].getEstado() == false){
+				asientosLibres++;
+			}
+		}
+		return "Asientos totales: "+asientosTotales+" libres: "+asientosLibres;
 	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	
+	public String dibujarMapa(Scanner mapa){
+		String s = "";
+		int [] asientos = new int [MAX_ASIENTOS];
+		int nuevaFila=0;
+		while(mapa.hasNextInt()){
+			 int i = 0; 
+			 int fila=1;
+			 int numero=1;
+			 
+		 	i++;
+		 	asientos[i] = mapa.nextInt();
+		
+		 	fila  = asientos[i] / 100;
+		 	numero  = asientos[i] % 100;
+	
+		 	if(numero != 0){ 
+			 	Asiento asiento = buscarAsiento(fila, numero);
+			 	if(asiento.getEstado()==false){
+			 		s = s+"- ";
+			 	}else{
+			 		s = s+"X ";
+			 	}
+			 	
+		 	}else{
+		 		s = s+"  ";
+		 	}
+		 	
+		 	nuevaFila++;
+		 	if(nuevaFila==21){
+		 		s = s+"\n";
+		 		nuevaFila=0;
+		 	}
+		}
+		
+		return s;
 	}
 	
 	public boolean ocupar(int fila, int numero){
@@ -80,7 +118,7 @@ public class Platea {
 	
 	Asiento buscarAsiento(int fila, int numero){
 		
-		for (int i = 0; i < asientosTotales; i++) {	
+		for (int i = 0; i < numAsientos; i++) {	
 
 			if (asientos[i].getFila() == fila && asientos[i].getNumero() == numero)
 				return asientos[i];	
@@ -88,10 +126,23 @@ public class Platea {
 		return null;
 	}
 	
-	public String toString(int fila, int numero) {
+	public String imprimirEntrada(int fila, int numero) {
 		Asiento asiento = buscarAsiento(fila, numero);
-		String s = asiento.toString();
+		String s = asiento.imprimirEntrada();
 		return s;
 	}
 	
+	public String imprimirMapa(Scanner mapa) {
+		
+		String s =contarAsientos()+"\n\n"+dibujarMapa(mapa);
+		return s;
+	}
+	
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 }

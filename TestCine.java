@@ -19,6 +19,8 @@ public class TestCine {
 		 
 		 Scanner scanner = new Scanner(new File("src/practica1/array.txt"));
 		 Scanner scanner2 = new Scanner(new File("src/practica1/array.txt"));
+		 
+		 Scanner mapa = new Scanner(new File("src/practica1/array.txt"));
 		 Scanner scanner3 = new Scanner(new File("src/practica1/sesion1.txt"));
 		 Scanner scanner4 = new Scanner(new File("src/practica1/sesion2.txt"));
 		 
@@ -49,18 +51,27 @@ public class TestCine {
 		 FileWriter fichero1 = new FileWriter("src/practica1/entrada1.txt");
 		 
 		 PrintWriter pw1 = new PrintWriter(fichero1);
-		 pw1.println(cine.comprarEntrada(1, 1, "platea1", 1, 5));
+		 pw1.println(cine.comprarEntrada(1, 1, "platea1", 1, 5)
+				 	+cine.comprarEntrada(1, 1, "platea1", 1, 6)
+				 	+cine.comprarEntrada(1, 1, "platea1", 5, 1)
+				 	+cine.comprarEntrada(1, 1, "platea1", 7, 3)
+				 	+cine.comprarEntrada(1, 1, "platea1", 3, 8)
+				 	+cine.comprarEntrada(1, 1, "platea1", 8, 7)
+				 	+cine.comprarEntrada(1, 1, "platea1", 9, 14)
+				 	+cine.comprarEntrada(1, 1, "platea1", 9, 15)
+				 	+cine.comprarEntrada(1, 1, "platea1", 1, 12));
 		 
 		 PrintWriter pw2 = new PrintWriter(fichero1);
-		 pw2.println(cine.comprarEntrada(1, 1, "platea1", 1, 5));
-
-		 PrintWriter pw3 = new PrintWriter(fichero1);
-		 pw3.println(cine.comprarEntrada(1, 1, "platea1", 1, 6));
-		 
-		 PrintWriter pw4 = new PrintWriter(fichero1);
-		 pw4.println(cine.comprarEntrada(1, 2, "platea2", 1, 6));
+		 pw2.println(cine.comprarEntrada(1, 2, "platea2", 1, 11));
 	 
 		 fichero1.close();
+		 
+		 FileWriter mapaOcupacion = new FileWriter("src/practica1/mapaOcupacion.txt");
+		 
+		 PrintWriter pw3 = new PrintWriter(mapaOcupacion);
+		 pw3.println(cine.verMapaOcupacion(1, 1, "platea1", mapa));
+	 
+		 mapaOcupacion.close();
 
 		          
 	}
