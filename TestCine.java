@@ -59,7 +59,7 @@ public class TestCine {
 				 	+cine.comprarEntrada(1, 1, "platea1", 8, 7)
 				 	+cine.comprarEntrada(1, 1, "platea1", 9, 14)
 				 	+cine.comprarEntrada(1, 1, "platea1", 9, 15)
-				 	+cine.comprarEntrada(1, 1, "platea1", 1, 12));
+				 	+cine.comprarEntrada(1, 1, "platea1", 1, 2));
 		 
 		 PrintWriter pw2 = new PrintWriter(fichero1);
 		 pw2.println(cine.comprarEntrada(1, 2, "platea2", 1, 11));

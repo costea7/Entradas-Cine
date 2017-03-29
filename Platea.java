@@ -64,7 +64,7 @@ public class Platea {
 	public String dibujarMapa(Scanner mapa){
 		String s = "";
 		int [] asientos = new int [MAX_ASIENTOS];
-		int nuevaFila=0;
+		int filaActual=1;
 		while(mapa.hasNextInt()){
 			 int i = 0; 
 			 int fila=1;
@@ -75,8 +75,16 @@ public class Platea {
 		
 		 	fila  = asientos[i] / 100;
 		 	numero  = asientos[i] % 100;
+		 	
+		 
 	
+		 	if (filaActual != fila){
+		 		s = s+"\n";
+		 		filaActual++;
+		 	}
+		 	
 		 	if(numero != 0){ 
+		 		
 			 	Asiento asiento = buscarAsiento(fila, numero);
 			 	if(asiento.getEstado()==false){
 			 		s = s+"- ";
@@ -86,12 +94,6 @@ public class Platea {
 			 	
 		 	}else{
 		 		s = s+"  ";
-		 	}
-		 	
-		 	nuevaFila++;
-		 	if(nuevaFila==21){
-		 		s = s+"\n";
-		 		nuevaFila=0;
 		 	}
 		}
 		
