@@ -24,10 +24,6 @@ public class Sala {
 		return false;
 	}
 	
-	boolean eliminarSesion(Sesion sesion) {
-		sesiones[numSesiones--] = sesion;
-		return true;
-	}
 	
 	Sesion buscarSesion(int idSesion){	
 		for (int i = 0; i < numSesiones; i++) {	
@@ -46,23 +42,6 @@ public class Sala {
 		return false;
 	}
 	
-	public boolean eliminarPlatea(int idSesion, Platea platea) {
-		Sesion sesion = buscarSesion(idSesion);
-		if (sesion != null){
-			sesion.eliminarPlatea(platea);
-			return true;		
-		}
-		return false;
-	}
-	
-	boolean buscarPlatea(int idSesion, String nombrePlatea){
-		Sesion sesion = buscarSesion(idSesion);
-		if (sesion != null){
-				sesion.buscarPlatea(nombrePlatea);
-				return true;		
-		}
-		return false;
-	}
 	
 	boolean verMapaOcupacion(int idSesion, String nombrePlatea){
 		Sesion sesion = buscarSesion(idSesion);
@@ -82,6 +61,11 @@ public class Sala {
 		return s;
 	}
 	
+	
+	
+	
+	
+	
 	public String imprimirEntrada(int idSesion, String nombrePlatea, int fila, int numero) {
 		String s = "Sala "+idSesion+  "\n";
 		Sesion sesion = buscarSesion(idSesion);
@@ -97,6 +81,16 @@ public class Sala {
 			}
 		}
 		return false;
+	}
+	
+	
+	
+	
+	
+	
+	
+	public String toString(){
+		return "sala: "+numero;
 	}
 	
 	public int getNumero() {

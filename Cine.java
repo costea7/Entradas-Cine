@@ -24,13 +24,6 @@ public class Cine {
 		return false;
 	}
 	
-	boolean eliminarSala(Sala sala) {
-		if (numSalas > 0) {
-			salas[numSalas--] = sala;
-			return true;
-		}
-		return false;
-	}
 
 	Sala buscarSala(int numero) {
 		for (int i = 0; i < numSalas; i++) {
@@ -50,23 +43,6 @@ public class Cine {
 		return false;
 	}
 	
-	boolean eliminarSesion(int numeroSala, Sesion sesion ){
-		Sala sala = buscarSala(numeroSala);
-		if (sala != null){
-				sala.eliminarSesion(sesion);
-				return true;		
-		}
-		return false;
-	}
-	
-	boolean buscarSesion(int numeroSala, int idSesion ){
-		Sala sala = buscarSala(numeroSala);
-		if (sala != null){
-				sala.buscarSesion(idSesion);
-				return true;		
-		}
-		return false;
-	}
 	
 	
 	boolean nuevaPlatea(int numeroSala, int idSesion, Platea platea){
@@ -78,29 +54,12 @@ public class Cine {
 		return false;
 	}
 	
-	boolean elimiarPlatea(int numeroSala, int idSesion, Platea platea){
-		Sala sala = buscarSala(numeroSala);
-		if (sala != null){
-				sala.eliminarPlatea(idSesion, platea);
-				return true;		
-		}
-		return false;
-	}
-	
-	boolean buscarPlatea(int numeroSala, int idSesion, String nombrePlatea ){
-		Sala sala = buscarSala(numeroSala);
-		if (sala != null){
-				sala.buscarPlatea(idSesion, nombrePlatea);
-				return true;		
-		}
-		return false;
-	}
 	
 	String verMapaOcupacion(int numeroSala, int idSesion, String nombrePlatea, Scanner mapa){
 		Sala sala = buscarSala(numeroSala);
 			if(sala != null){
 				if(sala.verMapaOcupacion(idSesion, nombrePlatea)){
-					return imprimirMapa(numeroSala, idSesion, nombrePlatea, mapa);			
+					return nombre + "\n";		
 				}
 			}
 		return "ERROR \n\n";
@@ -112,6 +71,13 @@ public class Cine {
 	    s = s + sala.imprimirMapa(idSesion, nombrePlatea, mapa)+"\n";
 	    return s;
 	  }
+	
+	
+	
+	
+	
+	
+	
 	
 	String comprarEntrada(int numeroSala, int idSesion, String nombrePlatea, int fila, int numero){
 		Sala sala = buscarSala(numeroSala);
@@ -130,3 +96,16 @@ public class Cine {
 	    return s;
 	  }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

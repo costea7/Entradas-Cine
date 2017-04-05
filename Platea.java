@@ -1,8 +1,8 @@
 package practica1;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
-
-import javax.swing.SingleSelectionModel;
 
 public class Platea {
 	
@@ -14,7 +14,9 @@ public class Platea {
 	
 	public int MAX_ASIENTOS = 500;
 	
-	public Platea(String nombre, Scanner scanner) {
+	public Platea(String nombre, String fichero) throws FileNotFoundException {
+		Scanner scanner = new Scanner(new File(fichero));
+		
 		this.nombre = nombre;
 		asientos = new Asiento[MAX_ASIENTOS];
 		crearAsientos(scanner);
@@ -54,7 +56,7 @@ public class Platea {
 	
 	public String contarAsientos(){
 		for(int i=0;i<numAsientos;i++){
-			if(asientos[i].getEstado() == false){
+			if(!(asientos[i].estaOcupado())){
 				asientosLibres++;
 			}
 		}
@@ -86,7 +88,7 @@ public class Platea {
 		 	if(numero != 0){ 
 		 		
 			 	Asiento asiento = buscarAsiento(fila, numero);
-			 	if(asiento.getEstado()==false){
+			 	if(!(asiento.estaOcupado())){
 			 		s = s+"- ";
 			 	}else{
 			 		s = s+"X ";
@@ -106,7 +108,7 @@ public class Platea {
 		
 		if (asiento!=null){
 			
-			if((asiento.getEstado()== false)){
+			if(!(asiento.estaOcupado())){
 				asiento.ocupar();
 				return true;	
 			}
@@ -122,7 +124,7 @@ public class Platea {
 		
 		for (int i = 0; i < numAsientos; i++) {	
 
-			if (asientos[i].getFila() == fila && asientos[i].getNumero() == numero)
+			if (asientos[i].devuelveFila() == fila && asientos[i].devuelveNumero() == numero)
 				return asientos[i];	
 		}
 		return null;

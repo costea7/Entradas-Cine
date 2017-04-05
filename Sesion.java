@@ -1,4 +1,6 @@
 package practica1;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Sesion {
@@ -6,11 +8,14 @@ public class Sesion {
 	private int id;
 	private String pelicula;
 	private String horaInicio, horaFin, fecha;
-	private Platea[] plateas;
+	private Platea[] plateas; 
 	private int numPlateas;
-	public int MAX_PLATEAS = 500;
+	private int MAX_PLATEAS = 500;
 	
-	public Sesion(int id, Scanner scanner) {
+	public Sesion(int id, String fichero) throws FileNotFoundException {
+		
+		@SuppressWarnings("resource")
+		Scanner scanner = new Scanner(new File(fichero));
 
 		this.id = id;
 		this.pelicula = scanner.nextLine();
@@ -28,10 +33,6 @@ public class Sesion {
 		return false;
 	}
 	
-	boolean eliminarPlatea(Platea platea) {
-		plateas[numPlateas--] = platea;
-		return true;
-	}
 	
 	Platea buscarPlatea(String nombre){	
 		for (int i = 0; i < numPlateas; i++) {	
@@ -73,6 +74,10 @@ public class Sesion {
 		return false;
 	}
 
+	
+	
+	
+	
 	public int getId() {
 		return id;
 	}		

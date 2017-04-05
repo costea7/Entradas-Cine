@@ -1,14 +1,9 @@
 package practica1;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.DataInputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
@@ -17,24 +12,16 @@ public class TestCine {
 		
 	 public static void main(String[] args) throws FileNotFoundException, IOException {
 		 
-		 Scanner scanner = new Scanner(new File("src/practica1/array.txt"));
-		 Scanner scanner2 = new Scanner(new File("src/practica1/array.txt"));
 		 
-		 Scanner mapa = new Scanner(new File("src/practica1/array.txt"));
-		 Scanner scanner3 = new Scanner(new File("src/practica1/sesion1.txt"));
-		 Scanner scanner4 = new Scanner(new File("src/practica1/sesion2.txt"));
-		 
-
 		 Cine cine = new Cine("Cine Rialto");
 		 
 		 Sala sala = new Sala(1);		 
 		 
-		 Sesion sesion1 = new Sesion(1, scanner3);
-		 Sesion sesion2 = new Sesion(2, scanner4);
+		 Sesion sesion1 = new Sesion(1, "src/practica1/sesion1.txt");
+		 Sesion sesion2 = new Sesion(2, "src/practica1/sesion2.txt");
 		 
-		 
-		 Platea platea1 = new Platea("platea1", scanner);
-		 Platea platea2 = new Platea("platea2", scanner2);
+		 Platea platea1 = new Platea("platea1", "src/practica1/array.txt");
+		 Platea platea2 = new Platea("platea2", "src/practica1/array.txt");
 		 
 		 
 		 cine.nuevaSala(sala);
@@ -66,6 +53,7 @@ public class TestCine {
 	 
 		 fichero1.close();
 		 
+		 Scanner mapa = new Scanner(new File("src/practica1/array.txt"));
 		 FileWriter mapaOcupacion = new FileWriter("src/practica1/mapaOcupacion.txt");
 		 
 		 PrintWriter pw3 = new PrintWriter(mapaOcupacion);

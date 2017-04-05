@@ -12,7 +12,6 @@ public class Asiento {
 	}
 	
 	public void ocupar(){
-		 
 		ocupado = true;
 	}
 	
@@ -20,24 +19,20 @@ public class Asiento {
 		ocupado = false;
 	}
 	
-	public boolean estado(){
+	public boolean estaOcupado(){
 		return ocupado;
 	}
 	
-	public int getFila() {
+	public int devuelveFila() {
 		return fila;
 	}
 
-	public int getNumero() {
+	public int devuelveNumero() {
 		return numero;
 	}
 	
-	public boolean getEstado() {
-		return ocupado;
-	}
-	
 	public String imprimirEntrada() {
-	    String s =("Asiento Fila: "+fila+" Numero: "+numero+"\n");
+	    String s =("Asiento Fila: "+devuelveFila()+" Numero: "+devuelveNumero()+"\n");
 	    return s;
 	}
 }
