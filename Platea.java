@@ -106,12 +106,7 @@ public class Platea {
 	return null;
   }
 	
-  public String generarEntrada(int fila, int numero) {
-	Asiento asiento = buscarAsiento(fila, numero);
-	String s = asiento.generarEntrada();
-	return s;
-  }
-	
+
   public String devuelveNombre() {
     return nombre;
   }
@@ -129,14 +124,14 @@ public class Platea {
 	return asientosTotales;
   }
 
-public String comprarT(int idSesion, String nombrePlatea, int fila, int numero) {
+  public String comprarEntrada(int idSesion, String nombrePlatea, int fila, int numero) {
 	Asiento asiento = buscarAsiento(fila,numero);
 	if(!(asiento.estaOcupado())){
 		  asiento.ocupar();
-		    return asiento.generarEntrada();	
+		    return asiento.comprarEntrada();	
 	    }
        
 	return "El asiento esta ocupado";
-}
+  }
   
 }

@@ -41,7 +41,7 @@ public class Asiento {
     return numero;
   }
 
-  public String generarEntrada() {
+  public String comprarEntrada() {
     String s =("Asiento Fila: "+devuelveFila()+" Numero: "+devuelveNumero()+"\n");
 	return s;
   }

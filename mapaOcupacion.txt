@@ -2,8 +2,8 @@ Cine Rialto
 Sala 1
 Master and Commander
 Sesion 17:00 - 19:30 - 19:30
-Asientos totales: 192Asientos libres: 191
-  - - - - - - - - -   - - - - - - - - -   
+Asientos totales: 192Asientos libres: 190
+  X X - - - - - - -   - - - - - - - - -   
 - - - - - - - - - -   - - - - - - - - - - 
 - - - - - - - - - -   - - - - - - - - - - 
 - - - - - - - - - -   - - - - - - - - - - 
@@ -12,5 +12,5 @@ Asientos totales: 192Asientos libres: 191
 - - - - - - - - - -   - - - - - - - - - - 
 - - - - - - - - - -   - - - - - - - - - - 
   - - - - - - - - -   - - - - - - - - -   
-    - - - - X - - -   - - - - - - - -     
+    - - - - - - - -   - - - - - - - -     
 

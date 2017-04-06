@@ -59,22 +59,6 @@ public class Sesion {
   return s;
   }
 	
-  public String generarEntrada(String nombrePlatea,  int fila, int numero) {
-    String s = pelicula + "\n" + "Sesion "+ horaInicio + " - " + horaFin + " - " + fecha+"\n";
-    Platea platea = buscarPlatea(nombrePlatea);
-    s = s + platea.generarEntrada(fila, numero);
-  return s;
-  }
-	
-  boolean comprarEntrada(String nombrePlatea, int fila, int numero){
-    Platea platea = buscarPlatea(nombrePlatea);
-      if(platea != null) {
-	    if(platea.ocuparAsiento(fila, numero)){
-		  return true;	
-		}
-	  }	
-	return false;
-	}
 
   public int devuelveId() {
 	return id;
@@ -92,18 +76,19 @@ public class Sesion {
 	return fecha;
   }
 
-public String comprarT(int idSesion, String nombrePlatea, int fila, int numero) {
-	
+  public String comprarEntrada(int idSesion, String nombrePlatea, int fila, int numero) {
 	Platea platea = buscarPlatea(nombrePlatea);
 	 String s = "";
 	 try{
-            s = s + pelicula + "\n" + "Sesion "+ horaInicio + " - " + horaFin + " - " + fecha+"\n";
-            
-            s = s + platea.comprarT( idSesion,nombrePlatea, fila, numero);
-            return s;
-		}
-         catch(NullPointerException e) {
-            return  "Error no hay platea\n";
-         }	
-}
+       s = s + devuelvePelicula() + "\n" + "Sesion "+ 
+	       devuelveHoraInicio() + " - " + 
+    	   devuelveHoraFin() + " - " + 
+	       devuelveFecha()+"\n" +     
+           platea.comprarEntrada( idSesion,nombrePlatea, fila, numero);
+       return s;
+	  }
+      catch(NullPointerException e) {
+        return  "Error no hay platea\n";
+      }	
+  }
 }
