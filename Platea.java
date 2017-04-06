@@ -135,8 +135,8 @@ public String comprarT(int idSesion, String nombrePlatea, int fila, int numero) 
 		  asiento.ocupar();
 		    return asiento.generarEntrada();	
 	    }
-	
-	return "esta ocupado";
+       
+	return "El asiento esta ocupado";
 }
   
 }

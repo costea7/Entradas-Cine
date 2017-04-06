@@ -77,14 +77,17 @@ public class Sala {
 	}
 
 	public String comprarT(int idSesion,String nombrePlatea, int fila, int numero) {
-		String s = devuelveNumero() + "\n";
-		Sesion sesion = buscarSesion(idSesion);
-		
-		if (sesion != null){
+		String s = ""; 
+                Sesion sesion = buscarSesion(idSesion);
+                 
+		try{
+                   //sesion.buscarPlatea(nombrePlatea);
+                    s = s + devuelveNumero() + "\n";
 			s = s + sesion.comprarT( idSesion,nombrePlatea, fila, numero);
 		}
-		
-		
+		catch(NullPointerException e) {
+                     return  "\nError no hay sesion\n";
+                }
 		return s;
 	}	
 }

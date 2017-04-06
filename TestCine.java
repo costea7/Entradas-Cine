@@ -26,7 +26,7 @@ public class TestCine {
 		 
 		 PrintWriter pw1 = new PrintWriter(fichero1);
 		 pw1.println(cine.comprarT(1, 1, "platea1", 10, 5) +
-				 cine.comprarT(1, 1, "platea4", 10, 5));
+				 cine.comprarT(1, 2, "platea1", 10, 5));
 		 
 		 
 		 PrintWriter pw2 = new PrintWriter(fichero1);
@@ -45,6 +45,3 @@ public class TestCine {
 		          
 	}
 }
-
-
-

@@ -90,28 +90,22 @@ public class Cine {
 	
 	
 	
-	public String comprarT(int numeroSala, int idSesion, String nombrePlatea, int fila, int numero){
-		String s = devuelveNombre() + "\n";
-		Sala sala = buscarSala(numeroSala);
+	public String comprarT(int numeroSala, int idSesion, String nombrePlatea, int fila, int numero) {
+		//String s = "\n" + devuelveNombre() + "\n";
+		 Sala sala = buscarSala(numeroSala);
+                
+		String s = "";
+                
+                   try {
+                     sala.buscarSesion(idSesion).buscarPlatea(nombrePlatea).buscarAsiento(fila, numero);
+                     s = s +"\n" + devuelveNombre() + "\n";
+                     s = s + sala.comprarT( idSesion,nombrePlatea, fila, numero);
+                   }
 		
-		if (sala != null){
-			s = s + sala.comprarT( idSesion,nombrePlatea, fila, numero);
-		}
-		
+                   catch(NullPointerException e){
+                     return "\nError\n";
+                }
 		
 		return s;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

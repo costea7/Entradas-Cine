@@ -1,16 +1,15 @@
+
 Cine Rialto
 1
 Master and Commander
 Sesion 17:00 - 19:30 - 25/02/2017
 Asiento Fila: 10 Numero: 5
-Cine Rialto
-1
-Master and Commander
-Sesion 17:00 - 19:30 - 25/02/2017
+
+Error
 
 Cine Rialto
 Sala 2
-El seor de los anillos
+El senor de los anillos
 Sesion 21:00 - 23:30 - 25/02/2017
 Asiento Fila: 1 Numero: 11
 

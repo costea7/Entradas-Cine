@@ -93,14 +93,17 @@ public class Sesion {
   }
 
 public String comprarT(int idSesion, String nombrePlatea, int fila, int numero) {
-	 String s = pelicula + "\n" + "Sesion "+ horaInicio + " - " + horaFin + " - " + fecha+"\n";
-	 Platea platea = buscarPlatea(nombrePlatea);
-	 
-	 if (platea != null){
-			s = s + platea.comprarT( idSesion,nombrePlatea, fila, numero);
-		}
 	
-
-	return s;
+	Platea platea = buscarPlatea(nombrePlatea);
+	 String s = "";
+	 try{
+            s = s + pelicula + "\n" + "Sesion "+ horaInicio + " - " + horaFin + " - " + fecha+"\n";
+            
+            s = s + platea.comprarT( idSesion,nombrePlatea, fila, numero);
+            return s;
+		}
+         catch(NullPointerException e) {
+            return  "Error no hay platea\n";
+         }	
 }
 }
