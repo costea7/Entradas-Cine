@@ -1,7 +1,5 @@
 package practica1;
 
-import java.util.Scanner;
-
 public class Cine {
 	
 	private String nombre;
@@ -27,7 +25,7 @@ public class Cine {
 
 	Sala buscarSala(int numero) {
 		for (int i = 0; i < numSalas; i++) {
-			if (salas[i].getNumero()==numero)
+			if (salas[i].devuelveNumero()==numero)
 				return salas[i];
 		}
 		return null;
@@ -53,48 +51,56 @@ public class Cine {
 		}
 		return false;
 	}
+
 	
-	
-	String verMapaOcupacion(int numeroSala, int idSesion, String nombrePlatea, Scanner mapa){
+	public String generarMapaOcupacion(int numeroSala, int idSesion, String nombrePlatea){
+		String s = devuelveNombre() + "\n";
 		Sala sala = buscarSala(numeroSala);
-			if(sala != null){
-				if(sala.verMapaOcupacion(idSesion, nombrePlatea)){
-					return nombre + "\n";		
-				}
-			}
-		return "ERROR \n\n";
+		if(sala != null){
+			s = s + sala.generarMapaOcupacion(idSesion, nombrePlatea)+"\n";
+		}
+		
+		return s;
 	}
-	
-	public String imprimirMapa(int numeroSala, int idSesion, String nombrePlatea, Scanner mapa) {
-	    String s = nombre + "\n";
-	    Sala sala = buscarSala(numeroSala);
-	    s = s + sala.imprimirMapa(idSesion, nombrePlatea, mapa)+"\n";
-	    return s;
-	  }
-	
-	
-	
-	
-	
-	
 	
 	
 	String comprarEntrada(int numeroSala, int idSesion, String nombrePlatea, int fila, int numero){
 		Sala sala = buscarSala(numeroSala);
+		 String s = nombre + "\n";
 			if(sala != null){
 				if(sala.comprarEntrada(idSesion, nombrePlatea, fila, numero)){
-					return imprimirEntrada(numeroSala, idSesion, nombrePlatea, fila, numero);			
+					return  s = s + sala.generarEntrada(idSesion, nombrePlatea, fila, numero)+"\n";			
 				}
 			}
 		return "ERROR \n\n";
 	}
 	
-	public String imprimirEntrada(int numeroSala, int idSesion, String nombrePlatea, int fila, int numero) {
-	    String s = nombre + "\n";
-	    Sala sala = buscarSala(numeroSala);
-	    s = s + sala.imprimirEntrada(idSesion, nombrePlatea, fila, numero)+"\n";
-	    return s;
-	  }
+	public String generarEntrada(int numeroSala, int idSesion, String nombrePlatea, int fila, int numero) {
+		String s = nombre + "\n";
+		Sala sala = buscarSala(numeroSala);
+		s = s + sala.generarEntrada(idSesion, nombrePlatea, fila, numero)+"\n";
+		return s;
+	}
+	
+	public String devuelveNombre(){
+		return nombre;
+	}
+	
+	
+	
+	
+	
+	public String comprarT(int numeroSala, int idSesion, String nombrePlatea, int fila, int numero){
+		String s = devuelveNombre() + "\n";
+		Sala sala = buscarSala(numeroSala);
+		
+		if (sala != null){
+			s = s + sala.comprarT( idSesion,nombrePlatea, fila, numero);
+		}
+		
+		
+		return s;
+	}
 }
 
 

@@ -5,80 +5,102 @@ import java.util.Scanner;
 
 public class Sesion {
 
-	private int id;
-	private String pelicula;
-	private String horaInicio, horaFin, fecha;
-	private Platea[] plateas; 
-	private int numPlateas;
-	private int MAX_PLATEAS = 500;
-	
-	public Sesion(int id, String fichero) throws FileNotFoundException {
-		
-		@SuppressWarnings("resource")
-		Scanner scanner = new Scanner(new File(fichero));
+  private int id;
+  private String pelicula;
+  private String horaInicio, horaFin, fecha;
+  private Platea[] plateas; 
+  private int numPlateas;
+  private int MAX_PLATEAS = 500;
 
-		this.id = id;
-		this.pelicula = scanner.nextLine();
-		this.horaInicio = scanner.nextLine();
-		this.horaFin = scanner.nextLine();
-		this.fecha = scanner.nextLine();
-		plateas = new Platea[MAX_PLATEAS ];
+  public Sesion(int id, String fichero) throws FileNotFoundException {
+		
+  @SuppressWarnings("resource")
+  Scanner scanner = new Scanner(new File(fichero));
+
+    this.id = id;
+	this.pelicula = scanner.nextLine();
+    this.horaInicio = scanner.nextLine();
+	this.horaFin = scanner.nextLine();
+	this.fecha = scanner.nextLine();
+	plateas = new Platea[MAX_PLATEAS ];
 	}
 
 	boolean nuevaPlatea(Platea platea) {	
-		if (numPlateas < plateas.length) {
-			plateas[numPlateas++] = platea;
-			return true;
-		}
-		return false;
+	  if (numPlateas < plateas.length) {
+	    plateas[numPlateas++] = platea;
+		return true;
+	  }
+	return false;
 	}
-	
 	
 	Platea buscarPlatea(String nombre){	
-		for (int i = 0; i < numPlateas; i++) {	
-			if (plateas[i].getNombre().equals(nombre))
-				return plateas[i];	
+	  for (int i = 0; i < numPlateas; i++) {	
+	    if (plateas[i].devuelveNombre().equals(nombre))
+		  return plateas[i];	
 		}
-		return null;
+	return null;
 	}	
 	
-	public String imprimirMapa(String nombrePlatea, Scanner mapa) {
-		String s = pelicula + "\n" + "Sesion "+ horaInicio + " - " + horaFin + " - " + fecha+"\n";
-		Platea platea = buscarPlatea(nombrePlatea);
-		s = s + platea.imprimirMapa(mapa);
-		return s;
+  public String generarMapaOcupacion(String nombrePlatea){
+   String s = devuelvePelicula() + "\n" + "Sesion "+ 
+              devuelveHoraInicio() +  " - " + 
+	  	      devuelveHoraFin() + " - " + 
+              devuelveHoraFin()+"\n";
+   Platea platea = buscarPlatea(nombrePlatea);
+   if(platea != null) {
+     try {
+	   s = s + "Asientos totales: " + platea.devuelveAsientosTotales() +
+			   "Asientos libres: " + platea.devuelveAsientosLibres() +
+			   "\n" + platea.generarMapaOcupacion();
+	 }catch (FileNotFoundException e) {
+	     e.printStackTrace();
+	  }
 	}
+  return s;
+  }
 	
-	boolean verMapaOcupacion(String nombrePlatea){
-		Platea platea = buscarPlatea(nombrePlatea);
-		if(platea != null) {
-			return true;	
-		}	
-		return false;
-	}
+  public String generarEntrada(String nombrePlatea,  int fila, int numero) {
+    String s = pelicula + "\n" + "Sesion "+ horaInicio + " - " + horaFin + " - " + fecha+"\n";
+    Platea platea = buscarPlatea(nombrePlatea);
+    s = s + platea.generarEntrada(fila, numero);
+  return s;
+  }
 	
-	public String imprimirEntrada(String nombrePlatea,  int fila, int numero) {
-		String s = pelicula + "\n" + "Sesion "+ horaInicio + " - " + horaFin + " - " + fecha+"\n";
-		Platea platea = buscarPlatea(nombrePlatea);
-		s = s + platea.imprimirEntrada(fila, numero);
-		return s;
-	}
-	
-	boolean comprarEntrada(String nombrePlatea, int fila, int numero){
-		Platea platea = buscarPlatea(nombrePlatea);
-		if(platea != null) {
-			if(platea.ocupar(fila, numero)){
-				return true;	
-			}
-		}	
-		return false;
+  boolean comprarEntrada(String nombrePlatea, int fila, int numero){
+    Platea platea = buscarPlatea(nombrePlatea);
+      if(platea != null) {
+	    if(platea.ocuparAsiento(fila, numero)){
+		  return true;	
+		}
+	  }	
+	return false;
 	}
 
+  public int devuelveId() {
+	return id;
+  }	
+  public String devuelvePelicula() {
+	return pelicula;
+  }
+  public String devuelveHoraInicio() {
+	return horaInicio;
+  }
+  public String devuelveHoraFin() {
+	return horaFin;
+  }
+  public String devuelveFecha() {
+	return fecha;
+  }
+
+public String comprarT(int idSesion, String nombrePlatea, int fila, int numero) {
+	 String s = pelicula + "\n" + "Sesion "+ horaInicio + " - " + horaFin + " - " + fecha+"\n";
+	 Platea platea = buscarPlatea(nombrePlatea);
+	 
+	 if (platea != null){
+			s = s + platea.comprarT( idSesion,nombrePlatea, fila, numero);
+		}
 	
-	
-	
-	
-	public int getId() {
-		return id;
-	}		
+
+	return s;
+}
 }
