@@ -4,18 +4,18 @@ package practica1;
 * Asiento
 *
 */
-
 public class Asiento {
 
   private boolean ocupado = false;
-  private int fila;
-  private int numero;
+  private final int fila;
+  private final int numero;
 
   /**
    * Construye un asiento
    * 
+   * @param fila
+   * @param numero
    */
-
   public Asiento(int fila, int numero) {
     this.fila = fila;
     this.numero = numero;
@@ -42,7 +42,7 @@ public class Asiento {
   }
 
   public String comprarEntrada() {
-    String s =("Asiento Fila: "+devuelveFila()+" Numero: "+devuelveNumero()+"\n");
+    String s =("Asiento Fila: "+devuelveFila()+" Numero: "+devuelveNumero());
 	return s;
   }
 }

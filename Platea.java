@@ -10,8 +10,8 @@ public class Platea {
   private int numAsientos;
   private int asientosTotales =0;
   private int asientosLibres =0;
-  private String mapa;
-  private Asiento[] asientos;
+  private final String mapa;
+  private final Asiento[] asientos;
   public int MAX_ASIENTOS = 500;
 
   public Platea(String nombre, String mapa) throws FileNotFoundException {		
@@ -100,7 +100,8 @@ public class Platea {
 	
   public Asiento buscarAsiento(int fila, int numero){	
     for (int i = 0; i < numAsientos; i++) {	
-	  if (asientos[i].devuelveFila() == fila && asientos[i].devuelveNumero() == numero)
+	  if (asientos[i].devuelveFila() == fila && 
+                  asientos[i].devuelveNumero() == numero)
 	    return asientos[i];	
 	  }
 	return null;
@@ -124,14 +125,16 @@ public class Platea {
 	return asientosTotales;
   }
 
-  public String comprarEntrada(int idSesion, String nombrePlatea, int fila, int numero) {
+  public String comprarEntrada(int idSesion, String nombrePlatea, int fila,
+          int numero) {
+      
 	Asiento asiento = buscarAsiento(fila,numero);
 	if(!(asiento.estaOcupado())){
 		  asiento.ocupar();
 		    return asiento.comprarEntrada();	
 	    }
        
-	return "El asiento esta ocupado";
+	return "El asiento " + fila + "/" + numero + " está ocupado";
   }
   
 }
