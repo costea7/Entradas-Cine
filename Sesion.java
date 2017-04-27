@@ -4,6 +4,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+* Sesión
+*
+*/
 public class Sesion {
 
   private int id;
@@ -11,24 +15,37 @@ public class Sesion {
   private String horaInicio, horaFin, fecha;
   private Platea[] plateas; 
   private int numPlateas;
+  
   private int MAX_PLATEAS = 500;
+  static final String msgError = "Error! Platea no existe: ";
 
-  public Sesion(int id, String fichero) throws FileNotFoundException {
-	
+  /**
+   * Crea una sesion
+   * 
+   * @param id
+   * @param fichero
+   * @throws java.io.FileNotFoundException
+   */
+  public Sesion(int id, String fichero) throws FileNotFoundException {	
     try{
-      @SuppressWarnings("resource")
       Scanner scanner = new Scanner(new File(fichero));
-
+      
       this.id = id;
       this.pelicula = scanner.nextLine();
       this.horaInicio = scanner.nextLine();
       this.horaFin = scanner.nextLine();
       this.fecha = scanner.nextLine();
+      
       plateas = new Platea[MAX_PLATEAS ];
     }catch(IOException ex){
-      System.out.println("Fallo con los ficheros "+ ex.getMessage());
+      System.out.println("Fallo con los ficheros " + ex.getMessage());
     }
   }
+  
+  /**
+   * Crea una platea
+   * 
+   */
   boolean nuevaPlatea(Platea platea) {
     if (numPlateas < plateas.length) {
       plateas[numPlateas++] = platea;
@@ -37,6 +54,11 @@ public class Sesion {
     return false;
   }
 	
+  /**
+   * Dado una cadena de carácteres, busca una platea que
+   * la tenga como nombre
+   * 
+   */
   Platea buscarPlatea(String nombre){	
     for (int i = 0; i < numPlateas; i++) {	
       if (plateas[i].devuelveNombre().equals(nombre))
@@ -45,19 +67,26 @@ public class Sesion {
     return null;
   }	
 	
+  /**
+   * Diseña el mapa de ocupación de los asientos creados de una platea
+   *
+   * @param nombrePlatea
+   * @return 
+   * 
+   */
   public String generarMapaOcupacion(String nombrePlatea){
     String s = devuelvePelicula() + "\n" + "Sesion "+ 
                devuelveHoraInicio() +  " - " + 
-	       devuelveHoraFin() + " - " + 
-               devuelveHoraFin()+"\n";
+	           devuelveHoraFin() + " - \t" + 
+               devuelveFecha() + "\n";
     Platea platea = buscarPlatea(nombrePlatea);
     if(platea != null) {
       try { 
-        s = s + "Asientos totales: " + platea.devuelveAsientosTotales() +
-	        "Asientos libres: " + platea.devuelveAsientosLibres() +
-	        "\n" + platea.generarMapaOcupacion();
+        s = s + "Asientos totales:" + platea.devuelveAsientosTotales() +
+	        "\tAsientos libres:" + platea.devuelveAsientosLibres() +
+	        "\n\n" + platea.generarMapaOcupacion();
       }catch (FileNotFoundException e) {
-        e.printStackTrace();
+        e.getMessage();
       }
     }
     return s;
@@ -83,19 +112,28 @@ public class Sesion {
     return fecha;
   }
 
+  /**
+   * String devuelve entrada
+   * 
+   * @param idSesion
+   * @param nombrePlatea
+   * @param fila
+   * @param numero 
+   * @return 
+   */
   public String comprarEntrada(int idSesion, String nombrePlatea, int fila,
           int numero) {
     String s = "";
-      try{
-        Platea platea = buscarPlatea(nombrePlatea);
-        s = s + devuelvePelicula() + "\n" + "Sesion "+ 
-	        devuelveHoraInicio() + " - " + 
-    	        devuelveHoraFin() + " - " + 
-	        devuelveFecha()+"\n" +     
-        platea.comprarEntrada( idSesion,nombrePlatea, fila, numero);
-        return s;
-      }catch(NullPointerException e) {
-        return "Error! La platea " + nombrePlatea + " no existe.";
-      }	
+    try{
+      Platea platea = buscarPlatea(nombrePlatea);
+      s = s + devuelvePelicula() + "\n" + "Sesion "+ 
+              devuelveHoraInicio() + " - " + 
+    	      devuelveHoraFin() + " - " + 
+	      devuelveFecha()+ "\n" +     
+      platea.comprarEntrada( idSesion,nombrePlatea, fila, numero);
+      return s;
+    }catch(NullPointerException e) {
+      return "\n" + msgError + nombrePlatea;
+    }	
   }
 }

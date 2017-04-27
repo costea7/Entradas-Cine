@@ -20,15 +20,28 @@ public class Asiento {
     this.fila = fila;
     this.numero = numero;
   }
-
+  
+  /**
+   * Cambiar el estado de un asiento a ocupado
+   * 
+   */
   public void ocupar(){
     ocupado = true;
   }
 
+  /**
+   * Cambiar el estado de un asiento a libre
+   * 
+   */
   public void liberar(){
     ocupado = false;
   }
 
+  /**
+   * Devuelve estado asiento
+   * 
+   * @return 
+   */
   public boolean estaOcupado(){
     return ocupado;
   }
@@ -41,8 +54,14 @@ public class Asiento {
     return numero;
   }
 
+  /**
+   * String devuelve entrada
+   * 
+   * @return 
+   */
   public String comprarEntrada() {
-    String s =("Asiento Fila: "+devuelveFila()+" Numero: "+devuelveNumero());
-	return s;
+    String s = ("Asiento Fila: " + devuelveFila() + 
+            " Numero: " + devuelveNumero());
+    return s;
   }
 }
