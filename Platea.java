@@ -7,6 +7,7 @@ import java.util.Scanner;
 /**
 * Platea
 *
+* @author Alex Costea y Aitor Mari
 */
 public class Platea {
 
@@ -56,9 +57,9 @@ public class Platea {
       numero  = asientoTemp % 100;
 	
       if (numero != 0){ 
-	    Asiento asiento = new Asiento(fila, numero);
-	    nuevoAsiento(asiento);	
-	    asientosTotales++;
+	Asiento asiento = new Asiento(fila, numero);
+	nuevoAsiento(asiento);	
+	asientosTotales++;
       }
     }
   }
@@ -70,7 +71,7 @@ public class Platea {
    * @return 
    */
   public boolean nuevoAsiento(Asiento asiento){
-    if(numAsientos<asientos.length){
+    if(numAsientos < asientos.length){
       asientos[numAsientos++] = asiento;
       return true;
     }
@@ -80,6 +81,7 @@ public class Platea {
   /**
    * Diseña el mapa de ocupación de los asientos creados para una platea
    * Inicialmente todos estarán libres
+   * 
    * @return 
    * @throws java.io.FileNotFoundException
    */
@@ -119,13 +121,14 @@ public class Platea {
 	
   /**
    * Dado un asiento, cambia su estado a ocupado
+   * 
    * @param fila
    * @param numero
    * @return 
    */
   public boolean ocuparAsiento(int fila, int numero){
     Asiento asiento = buscarAsiento(fila,numero);
-    if (asiento!=null){	
+    if (asiento != null){	
       if(!(asiento.estaOcupado())){
         asiento.ocupar();
         return true;	
@@ -135,8 +138,9 @@ public class Platea {
   }
 	
   /**
-   * Dadas una fila y un numero, busca el asiento correspondiente
+   * Dadas una fila y un número, busca el asiento correspondiente
    * en la platea
+   * 
    * @param fila
    * @param numero
    * @return 
@@ -156,7 +160,7 @@ public class Platea {
   }
 	
   public int devuelveAsientosLibres(){
-    for(int i = 0; i<numAsientos; i++){
+    for(int i = 0; i < numAsientos; i++){
       if(!(asientos[i].estaOcupado())){
 	    asientosLibres++;
       }

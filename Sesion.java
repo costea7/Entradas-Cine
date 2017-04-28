@@ -7,6 +7,7 @@ import java.util.Scanner;
 /**
 * Sesión
 *
+* @author Alex Costea y Aitor Mari
 */
 public class Sesion {
 
@@ -20,7 +21,7 @@ public class Sesion {
   static final String msgError = "Error! Platea no existe: ";
 
   /**
-   * Crea una sesion
+   * Crea una sesión
    * 
    * @param id
    * @param fichero
@@ -36,7 +37,7 @@ public class Sesion {
       this.horaFin = scanner.nextLine();
       this.fecha = scanner.nextLine();
       
-      plateas = new Platea[MAX_PLATEAS ];
+      plateas = new Platea[MAX_PLATEAS];
     }catch(IOException ex){
       System.out.println("Fallo con los ficheros " + ex.getMessage());
     }
@@ -55,7 +56,7 @@ public class Sesion {
   }
 	
   /**
-   * Dado una cadena de carácteres, busca una platea que
+   * Dada una cadena de caracteres, busca una platea que
    * la tenga como nombre
    * 
    */
@@ -77,7 +78,7 @@ public class Sesion {
   public String generarMapaOcupacion(String nombrePlatea){
     String s = devuelvePelicula() + "\n" + "Sesion "+ 
                devuelveHoraInicio() +  " - " + 
-	           devuelveHoraFin() + " - \t" + 
+	       devuelveHoraFin() + " - \t" + 
                devuelveFecha() + "\n";
     Platea platea = buscarPlatea(nombrePlatea);
     if(platea != null) {

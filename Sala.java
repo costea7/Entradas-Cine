@@ -3,6 +3,7 @@ package practica1;
 /**
 * Sala
 *
+* @author Alex Costea y Aitor Mari
 */
 public class Sala {
 	
@@ -12,6 +13,7 @@ public class Sala {
   
   public int MAX_SESIONES = 500;
   static final String msgError = "Error! Sesión no existe: ";
+  
   /**
    * Crea una sala
    * 
@@ -23,7 +25,7 @@ public class Sala {
   }
 
   /**
-   * Crea una sesion para una sala
+   * Crea una sesión para una sala
    * 
    */
   boolean nuevaSesion(Sesion sesion){
@@ -49,7 +51,7 @@ public class Sala {
   }
 	
   /**
-   * Crea una platea para una sesion
+   * Crea una platea para una sesión
    * 
    * @param idSesion
    * @param platea
@@ -66,7 +68,7 @@ public class Sala {
 	
   /**
    * Diseña el mapa de ocupación de los asientos creados de una platea
-   * de una sesion
+   * de una sesión
    *
    * @param idSesion
    * @param nombrePlatea
@@ -74,7 +76,7 @@ public class Sala {
    * 
    */
   public String generarMapaOcupacion(int idSesion, String nombrePlatea){
-    String s = "Sala "+devuelveNumero()+  "\n";
+    String s = "Sala " + devuelveNumero() +  "\n";
     Sesion sesion = buscarSesion(idSesion);
     if(sesion != null){
       s = s + sesion.generarMapaOcupacion(nombrePlatea);

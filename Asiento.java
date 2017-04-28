@@ -3,6 +3,7 @@ package practica1;
 /**
 * Asiento
 *
+* @author Alex Costea y Aitor Mari
 */
 public class Asiento {
 

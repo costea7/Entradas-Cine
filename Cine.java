@@ -7,16 +7,18 @@ import java.io.PrintWriter;
 /**
 * Cine
 *
+* @author Alex Costea y Aitor Mari
 */
 public class Cine{
 	
   private final String nombre;
   private final Sala[] salas;
   private int numSalas;
-  private int numeroEntrada = 1;
+  private int numeroEntrada = 1; //variable para nombrar los .txt
 	
   public int MAX_SALAS = 500;
   static final String msgError = "Error! Sala no existe: ";
+  static final String RUTAMAPA = "src/practica1/mapaOcupacion.txt";
 	  
   /**
    * Crea un cine
@@ -42,14 +44,14 @@ public class Cine{
 	
   /**
    * Dado un entero, busca una platea que
-   * lo tenga como numero de sala
+   * lo tenga como número de sala
    * 
    * @param numero
    * @return 
    */
   public Sala buscarSala(int numero) {
     for (int i = 0; i < numSalas; i++) {
-      if (salas[i].devuelveNumero()==numero) {
+      if (salas[i].devuelveNumero() == numero) {
         return salas[i];
       }
     }
@@ -57,13 +59,13 @@ public class Cine{
   }
 
   /**
-   * Crea una sesion para una sala
+   * Crea una sesión para una sala
    * 
    * @param idSesion
    * @param platea
    * @return 
    */
-  boolean nuevaSesion(int numeroSala, Sesion sesion ){
+  boolean nuevaSesion(int numeroSala, Sesion sesion){
     Sala sala = buscarSala(numeroSala);
     if (sala != null){
       sala.nuevaSesion(sesion);
@@ -73,7 +75,7 @@ public class Cine{
   }
 	
   /**
-   * Crea una platea para una sesion de una sala
+   * Crea una platea para una sesión de una sala
    * 
    * @param idSesion
    * @param platea
@@ -90,7 +92,7 @@ public class Cine{
 
   /**
    * Diseña el mapa de ocupación de los asientos creados de una platea
-   * de una sesion de una sala
+   * de una sesión de una sala
    *
    * @param numeroSala
    * @param idSesion
@@ -107,10 +109,10 @@ public class Cine{
           
       FileWriter mapaOcupacion = null;
       try{
-        mapaOcupacion = new FileWriter("src/practica1/mapaOcupacion.txt");
+        mapaOcupacion = new FileWriter(RUTAMAPA);
         PrintWriter pw = new PrintWriter(mapaOcupacion);
-	    pw.println(s);
-	    System.out.println(s);
+	pw.println(s);  //dibuja el mapa en un fichero
+	System.out.println(s); //dibuja el mapa por consola
         
         mapaOcupacion.close();
       }catch(IOException ex) {
