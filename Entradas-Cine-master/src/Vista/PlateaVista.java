@@ -15,49 +15,62 @@ import javax.swing.JPanel;
 
 import Modelo.Asiento;
 import Controlador.OyenteVista;
+import Modelo.Platea;
 import java.awt.Color;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.border.Border;
 
 /**
  * Vista Swing del tablero
  * 
  */
 public class PlateaVista extends JPanel {
-  private static final int ALTURA_FILA = 70;
+  private static final int ALTURA_FILA = 90;
   private static final int ANCHURA_COLUMNA = 20;
   private AsientoVista asientos[][];
   private CineVista tableroVista;
-  private ImageIcon icono;
+  private OyenteVista oyenteVista;
+ 
   public static final boolean RECIBIR_EVENTOS_RATON = true;
   public static final boolean NO_RECIBIR_EVENTOS_RATON = false;
   
+  private ImageIcon icono;
+  
+  private Platea platea;
+  
   
   PlateaVista(final CineVista vista, int filas, int columnas, 
-                boolean recibe_eventos_raton) {   
+                boolean recibe_eventos_raton) { 
+      
     this.tableroVista = vista;
-    
-    icono = new ImageIcon(
-           this.getClass().getResource("/vista/recursos/asiento.PNG"));
-    
+   
     setLayout(new GridLayout(filas, columnas));
     
+    Border raisedbevel = BorderFactory.createRaisedBevelBorder();
+    Border loweredbevel = BorderFactory.createLoweredBevelBorder();
+   
+    //setBorder(BorderFactory.createLineBorder(Color.BLACK));
+    setBorder(BorderFactory.createCompoundBorder(raisedbevel, loweredbevel));
+    
+    
     asientos = new AsientoVista[filas][columnas];
-         
-            for(int x = 0; x < filas ; x++)
-                for(int y = 0; y < columnas; y++){        
-                    asientos[x][y] = new AsientoVista(new Asiento(x, y));  
-                    asientos[x][y].setIcon(icono);
-                    add(asientos[x][y]); //adds button to grid
+            for(int fil = 0; fil < filas ; fil++)
+                for(int col = 0; col < columnas; col++){        
+                    asientos[fil][col] = new AsientoVista(new Asiento(fil, col));  
+       
+                    add(asientos[fil][col]); //adds button to grid
                      
         if (recibe_eventos_raton) {
-          asientos[x][y].addMouseListener(new MouseAdapter() { 
+          asientos[fil][col].addMouseListener(new MouseAdapter() { 
           @Override
             public void mousePressed(MouseEvent e) {               
               AsientoVista casilla = (AsientoVista)e.getSource();
               vista.notificacion(OyenteVista.Evento.RESERVAR_ASIENTO, 
-                                     casilla.devuelvePosicion());              
+                                     casilla.devuelveAsiento()); 
+              System.out.println(casilla.devuelveAsiento().comprarEntrada());
             }
  	  });
         }        
@@ -66,6 +79,14 @@ public class PlateaVista extends JPanel {
                                         columnas * ANCHURA_COLUMNA + 100));
     
     
+  }
+  
+  public void notificacion(OyenteVista.Evento evento, Object obj) {
+    oyenteVista.notificacion(evento, obj);    
+  }
+  
+  public Platea devuelvePlatea(){
+      return platea;
   }
 
   /**
@@ -81,6 +102,8 @@ public class PlateaVista extends JPanel {
    * 
    */   
   public void ponerIconoCasilla(Asiento asiento, Icon icono) {     
-    asientos[1][1].setIcon(icono);
+    asientos[asiento.devuelveFila()][asiento.devuelveNumero()].setIcon(icono);
   }
+  
+
 }

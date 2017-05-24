@@ -13,32 +13,34 @@ import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 
 import Modelo.Asiento;
+import java.awt.Color;
 import javax.swing.JButton;
+import javax.swing.border.EmptyBorder;
+
 
 
 /**
  * Vista de una casilla del tablero a partir de un JLabel
  * 
  */
-public class AsientoVista extends JLabel {
+public class AsientoVista extends JButton {
   private Asiento asiento;
-
+ 
   /**
    * Construye una vista con el icono indicado de la casilla en una posición 
    * 
    */
   AsientoVista(Asiento asiento, Icon icono) {
     this.asiento = asiento;
-
     setIcon(icono);
-        
+    setBackground(Color.WHITE);
+   
     setHorizontalAlignment(SwingConstants.CENTER);
-    setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
-    //setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+   // setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
+   // setBorder(BorderFactory.createEtchedBorder());
+    setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
   }
-  
-  
-  
+   
   /**
    * Construye una vista sin icono de la casilla en una posición 
    * 
@@ -51,7 +53,7 @@ public class AsientoVista extends JLabel {
    * Devuelve la posición de la casilla
    * 
    */
-  public Asiento devuelvePosicion() {
+  public Asiento devuelveAsiento() {
     return asiento;
   }
     
