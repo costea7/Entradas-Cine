@@ -15,6 +15,7 @@ public interface OyenteVista {
    /**
     *  Llamado para notificar un evento de la interfaz de usuario
     * 
+     * @param evento
     */ 
    public void notificacion(Evento evento, Object obj);
 }

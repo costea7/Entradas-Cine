@@ -55,6 +55,10 @@ public class Asiento {
     return numero;
   }
 
+//  public boolean es(int fila, int numero){
+//      Butaca.VACIA
+//  }
+  
   /**
    * String devuelve entrada
    * 

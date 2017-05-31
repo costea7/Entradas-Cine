@@ -6,7 +6,7 @@
 package Modelo;
 
 /**
- *  Casilla del juego de tablero
+ *  Ficha del juego de tablero
  * 
  */
 public enum Casilla {
@@ -16,19 +16,7 @@ public enum Casilla {
    *  Factoria de ficha
    * 
    */   
-  public static Casilla instancia(String string) {
-     switch(string) {
-         case " ":
-             return Casilla.VACIA;         
-             
-         case ".":
-             return Casilla.LIBRE;
-         
-         case "x":
-             return Casilla.OCUPADA;
-     }  
-     return null;
-  }
+
     
   /**
    *  Sobreescribe toString
@@ -46,6 +34,6 @@ public enum Casilla {
          case OCUPADA: 
              return "x";
      }
-     return "";
+     return " ";
    }     
 }
